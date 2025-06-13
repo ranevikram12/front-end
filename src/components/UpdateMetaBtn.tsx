@@ -26,7 +26,7 @@ export default function UpdateMetaBtn() {
 
   useEffect(() => {
     //Runs only on the first render
-   getImg()
+  // getImg()
   }, []);
 
 
@@ -112,8 +112,8 @@ export default function UpdateMetaBtn() {
     setIsLoading(true);
     try {
 
-
-      const connection = new Connection(clusterApiUrl("devnet"));
+// https://practical-fragrant-sponge.solana-mainnet.quiknode.pro/60572f0fe38dea1ba8334ae0b9a1a024773a10a1/
+const connection = new Connection("https://practical-fragrant-sponge.solana-mainnet.quiknode.pro/60572f0fe38dea1ba8334ae0b9a1a024773a10a1/");
 const metaplex = new Metaplex(connection);
 //const wallet = useWallet();
 //metaplex.use(walletAdapterIdentity(wallet))
@@ -123,7 +123,7 @@ metaplex.use(walletAdapterIdentity(wallet));
 
 
 
-const mint = new PublicKey("ATe3DymKZadrUoqAMn7HSpraxE4gB88uo1L9zLGmzJeL");
+//const mint = new PublicKey("7RRDBTcHn3RGogosjxNahVHva86pEQ4Pe6LKJMXxxsNh");
 //const nft = await metaplex.nfts().findByMint(mint);
 //const nft = await metaplex.nfts().findByMint({ mint });
 
@@ -131,28 +131,41 @@ const mint = new PublicKey("ATe3DymKZadrUoqAMn7HSpraxE4gB88uo1L9zLGmzJeL");
 // const mintAddress = new PublicKey("BQH7TvfikWH2bPupp6BnGryYWPr3e8oAWDmDufJ2aK1L");
 
 
- const mintAddress = new PublicKey("H4pPYcmTDV2QKAjwDwP8V7JLzf7qocvg3kbCxGwuCCKo");
+ const mintAddress = new PublicKey("3DXLzBhfz5R33QgnBBzWfNJLpr6BHAC5VM45Ui2GHLkd");
 
  //Token address
 // H4pPYcmTDV2QKAjwDwP8V7JLzf7qocvg3kbCxGwuCCKo
 
-const mintAddressToken = new PublicKey("H4pPYcmTDV2QKAjwDwP8V7JLzf7qocvg3kbCxGwuCCKo");
+// my token 
+//const mintAddressToken = new PublicKey("H4pPYcmTDV2QKAjwDwP8V7JLzf7qocvg3kbCxGwuCCKo");
+
+//3DXLzBhfz5R33QgnBBzWfNJLpr6BHAC5VM45Ui2GHLkd
+// client token
+//const mintAddressToken = new PublicKey("3DXLzBhfz5R33QgnBBzWfNJLpr6BHAC5VM45Ui2GHLkd");
 
 
 
 
-await metaplex.nfts().create({
-  uri: "https://yourdomain.com/test-token.json",
-  name: "Test Token",
-  symbol: "TTK",
-  sellerFeeBasisPoints: 0,
-  isMutable: true,
+// spl-token initialize-metadata H4pPYcmTDV2QKAjwDwP8V7JLzf7qocvg3kbCxGwuCCKo test ttt https://github.com/ranevikram12/front-end/blob/main/src/token.json
+
+// spl-token create-token --program-id 7RRDBTcHn3RGogosjxNahVHva86pEQ4Pe6LKJMXxxsNh --enable-metadata
+
+//  spl-token initialize-metadata 7RRDBTcHn3RGogosjxNahVHva86pEQ4Pe6LKJMXxxsNh test ttt https://github.com/ranevikram12/front-end/blob/main/src/token.json
+
+
+
+// await metaplex.nfts().create({
+//   uri: "https://github.com/ranevikram12/front-end/blob/main/src/token.json",
+//   name: "Test Token",
+//   symbol: "TTK",
+//   sellerFeeBasisPoints: 0,
+//   //isMutable: true,
   
-  tokenAddress: mint,
-  //mint: new PublicKey('YOUR_TOKEN_MINT'),
+//   tokenAddress: mint,
+//   //mint: new PublicKey('YOUR_TOKEN_MINT'),
 
-  tokenStandard: 1
-});
+//   //tokenStandard: 1
+// });
 
 
 
@@ -161,18 +174,28 @@ await metaplex.nfts().create({
 
 //metaplex.tokens().
 const nft1 = await metaplex.nfts().findByMint({ mintAddress });//
+
+console.log("NFT DS ",nft1)
 //const myNft = await metaplex.nfts().find({ mintAddress: 'your_nft_mint_address' });
 const updatedNft = await metaplex.nfts().update({
-  nftOrSft: nft1,  
-  name: "newName2",
+  nftOrSft: nft1, 
+   
+  name: "Medversant Token",
+  creators: [
+    {
+      address: new PublicKey('DvKA9BnVRLvwZ4KSq4hcB9d7uUhs8KLzwWx17vGm6U2E'),
+      share: 100,          // must sum to 100
+    }
+  ]
+  //creators: ["",""]
 });
 // const imageUrl = nft1!.json!;
 
-// console.log("img url",nft1.uri)
+//console.log("img url",nft1.uri)
 
 
       console.log("NFT DS ",nft1)
-      console.log(superadmin.publicKey)
+     // console.log(superadmin.publicKey)
     //  const data = new anchor.BN(2 * anchor.web3.LAMPORTS_PER_SOL);
 
       // console.log(data)
